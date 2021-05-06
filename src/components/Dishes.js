@@ -1,10 +1,10 @@
-import Food from "./Food";
+// import Food from "./Food";
 
-export default function Dishes(props){   
+// export default function Dishes(props){   
     
-    const dishData = {...props, foodtype:"dish", selected:false}
+//     const dishData = {...props, foodtype:"dish", selected:false}
 
-    return(
-        <Food content={dishData} />                   
-    );
-}
+//     return(
+//         <Food content={dishData} />                   
+//     );
+// }

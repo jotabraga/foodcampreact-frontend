@@ -1,8 +1,5 @@
-import Dishes from "./Dishes";
-import Drinks from "./Drinks";
-import Desserts from "./Desserts";
-import Food from "./Food";
 
+import Food from "./Food";
 
 export default function Menu(){
 
@@ -22,42 +19,48 @@ export default function Menu(){
         {title: "Pudim",image: "img/pudim.png", description: "Pudim caseiro de leite moça",price: "14,90"},
         {title: "Sorvete",image: "img/sorvete.jpg", description: "Sorvete gelato com duas bolas",price: "14,90"},
         {title: "Torta",image: "img/torta.jpg", description: "Torta de limão ou morango",price: "14,90"},
-    ]
+    ]  
 
+     const dishesData = dishesOptions.map(item => ({...item, selected:false, amount:0})); //adicionando selected e amount de forma mais simples
+     const drinksData = dishesOptions.map(item => ({...item, selected:false, amount:0})); //ao inves de add direto em todas as arrays
+     const dessertsData = dishesOptions.map(item => ({...item, selected:false, amount:0}));
+    
   
 
     return (
         <div class="menu">
+
           <div class="secao">
             <div class="titulo">Primeiro, seu prato</div>
-            <div class="opcoes pratos">
+            <div class="opcoes pratos">              
 
-            {dishesOptions.map(item => <Food item={item}/>)}
+            {dishesData.map(item => <Food item={item}/>)}              
 
             </div>
           </div>
+
+
 
           <div class="secao">
             <div class="titulo">Agora, sua bebida</div>
             <div class="opcoes bebidas">
 
-            {drinksOptions.map(item => <Food item={item}/>)}
+            {drinksData.map(item => <Food item={item}/>)}
 
             </div>
-
           </div>
+          
+
 
           <div class="secao">
             <div class="titulo">Por fim, sua sobremesa</div>
-
             <div class="opcoes sobremesas">
 
-            {dessertsOptions.map(item => <Food item={item}/>)}
-
+            {dessertsData.map(item => <Food item={item}/>)}
 
             </div>
-
           </div>
+          
       </div>
     );
 }

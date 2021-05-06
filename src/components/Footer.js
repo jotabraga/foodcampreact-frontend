@@ -1,13 +1,21 @@
+import React from "react";
 
 export default function Footer(){
 
-    const chooseToOrder = "Selecione os 3 itens para fechar o pedido";
-    const closeTheOrder = "Fechar pedido";
+    const [orderButton, setOrderButton] = React.useState("Selecione os 3 itens para fechar o pedido");
+
+    function changeButton(){
+        // if (verifyAllItens){
+        //     setOrderButton("Fechar pedido");
+        // }
+    }
+
+    
 
     return (
         <div class="footer">
             <a href="#" class="fazer-pedido">
-            {chooseToOrder}
+            {orderButton}
             </a>
         </div>
     );
