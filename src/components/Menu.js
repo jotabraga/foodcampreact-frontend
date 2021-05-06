@@ -1,6 +1,7 @@
 import Dishes from "./Dishes";
 import Drinks from "./Drinks";
 import Desserts from "./Desserts";
+import Food from "./Food";
 
 
 export default function Menu(){
@@ -31,7 +32,7 @@ export default function Menu(){
             <div class="titulo">Primeiro, seu prato</div>
             <div class="opcoes pratos">
 
-            {dishesOptions.map(item => <Dishes item={item}/>)}
+            {dishesOptions.map(item => <Food item={item}/>)}
 
             </div>
           </div>
@@ -40,7 +41,7 @@ export default function Menu(){
             <div class="titulo">Agora, sua bebida</div>
             <div class="opcoes bebidas">
 
-            {drinksOptions.map(item => <Drinks item={item}/>)}
+            {drinksOptions.map(item => <Food item={item}/>)}
 
             </div>
 
@@ -51,7 +52,7 @@ export default function Menu(){
 
             <div class="opcoes sobremesas">
 
-            {dessertsOptions.map(item => <Desserts item={item}/>)}
+            {dessertsOptions.map(item => <Food item={item}/>)}
 
 
             </div>
