@@ -24,6 +24,8 @@ export default function Menu(){
         <div class="menu">
       <div class="secao">
         <div class="titulo">Primeiro, seu prato</div>
+
+        {dishesOptions.map(item => <Dishes title={item.titulo} image={item.image} description={item.description} price={item.price}/>)}
         
       </div>
 
