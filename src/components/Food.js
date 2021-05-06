@@ -1,5 +1,3 @@
-
-
 export default function Food(props){
 
     const {image,title,description,price} = props;
