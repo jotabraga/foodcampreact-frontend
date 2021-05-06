@@ -1,6 +1,7 @@
-import Navbar from "./elements/Navbar";
-import Body from "./elements/Body";
-import MobileBackground from "./elements/MobileBackground";
+import Header from "./components/Header";
+import Menu from "./components/Menu";
+import Overlay from "./components/Overlay";
+import Footer from "./components/Footer";
 
 
 export default function App() {
