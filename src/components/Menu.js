@@ -1,4 +1,7 @@
 import Dishes from "./Dishes";
+import Drinks from "./Drinks";
+import Desserts from "./Desserts";
+
 
 export default function Menu(){
 
@@ -20,24 +23,40 @@ export default function Menu(){
         {titulo: "Torta",image: "img/torta.jpg", description: "Torta de limão ou morango",price: "14,90"},
     ]
 
+  
+
     return (
         <div class="menu">
-      <div class="secao">
-        <div class="titulo">Primeiro, seu prato</div>
+          <div class="secao">
+            <div class="titulo">Primeiro, seu prato</div>
+            <div class="opcoes pratos">
 
-        {dishesOptions.map(item => <Dishes title={item.titulo} image={item.image} description={item.description} price={item.price}/>)}
-        
-      </div>
+            {dishesOptions.map(item => <Dishes title={item.titulo} image={item.image} description={item.description} price={item.price}/>)}
 
-      <div class="secao">
-        <div class="titulo">Agora, sua bebida</div>
-        
-      </div>
+            </div>
+          </div>
 
-      <div class="secao">
-        <div class="titulo">Por fim, sua sobremesa</div>
-        
+          <div class="secao">
+            <div class="titulo">Agora, sua bebida</div>
+            <div class="opcoes bebidas">
+
+            {drinksOptions.map(item => <Drinks title={item.titulo} image={item.image} description={item.description} price={item.price}/>)}
+
+            </div>
+
+          </div>
+
+          <div class="secao">
+            <div class="titulo">Por fim, sua sobremesa</div>
+
+            <div class="opcoes sobremesas">
+
+            {dessertsOptions.map(item => <Desserts title={item.titulo} image={item.image} description={item.description} price={item.price}/>)}
+
+
+            </div>
+
+          </div>
       </div>
-    </div>
     );
 }
