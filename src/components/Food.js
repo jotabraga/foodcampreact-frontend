@@ -15,7 +15,6 @@ export default function Food(props){
             addItem(item);
             setSelection(selection + " selecionado");
             props.SetTheChoice(item,parameter); //função que esta no app que muda pra true a variavel de selected do prato
-            verifyFoodChoose();
         }    
     }
 

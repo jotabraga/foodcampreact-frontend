@@ -9,7 +9,7 @@ export default function Menu(props){
             <div class="titulo">Primeiro, seu prato</div>
             <div class="opcoes pratos">              
 
-            {props.dishes.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount}/>)}              
+            {props.dishes.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount} verifyTheOrder={props.verifyTheOrder}/>)}              
 
             </div>
           </div>
@@ -20,7 +20,7 @@ export default function Menu(props){
             <div class="titulo">Agora, sua bebida</div>
             <div class="opcoes bebidas">
 
-            {props.drinks.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount}/>)}
+            {props.drinks.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount} verifyTheOrder={props.verifyTheOrder}/>)}
 
             </div>
           </div>
@@ -31,7 +31,7 @@ export default function Menu(props){
             <div class="titulo">Por fim, sua sobremesa</div>
             <div class="opcoes sobremesas">
 
-            {props.desserts.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount}/>)}
+            {props.desserts.map(item => <Food item={item} SetTheChoice={props.SetTheChoice} SetTheAmount={props.SetTheAmount} verifyTheOrder={props.verifyTheOrder} />)}
 
             </div>
           </div>

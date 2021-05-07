@@ -33,38 +33,51 @@ export default function App() {
   const [dessertsAmount, setDessertsAmount] = useState([0,0,0]);
 
   const dishesData = dishesOptions.map((item, index) => ({...item, selected:dishesSelected[index], amount:dishesAmount[index]})); //adicionando selected e amount de forma mais simples
-  const drinksData = dishesOptions.map((item, index) => ({...item, selected:drinksSelected[index], amount:drinksAmount[index]})); //ao inves de add direto em todas as arrays
-  const dessertsData = dishesOptions.map((item, index) => ({...item, selected:dishesSelected[index], amount:dessertsAmount[index]}));
-
+  const drinksData = drinksOptions.map((item, index) => ({...item, selected:drinksSelected[index], amount:drinksAmount[index]})); //ao inves de add direto em todas as arrays
+  const dessertsData = dessertsOptions.map((item, index) => ({...item, selected:dessertsSelected[index], amount:dessertsAmount[index]}));
+ 
+  const [orderButton, setOrderButton] = React.useState("Selecione os 3 itens para fechar o pedido"); //botão de fechar pedido do footer
+  const [closeOrder, setCloseOrder] = useState(""); //estado que habilita o onclick pra fechar o pedido no footer
+     
   function SetTheChoice(element, parameter){
+
+    let realtimeselector;
+          
+    const id = element.id;
     const e = (element.id)%3; //o "e" vai assumir os valores 0, 1, 2 de forma ciclica
     
-    if(e < 3){      
+    if(id < 3){      
       const newArray = [...dishesSelected];
-      newArray[e]=parameter;  //o parametro pode ser falso ou verdadeiro para selecionar ou retirar a seleção    
+      newArray[e]=parameter;  //o parametro pode ser falso ou verdadeiro para selecionar ou retirar a seleção atribuindo na posição "e" que vai de 0 a 2   
       setDishesSelected(newArray);   
-            
-    }else if(e < 6){
+      realtimeselector = "dish";  
+
+    }else if(id < 6){
       const newArray = [...drinksSelected];
       newArray[e]=parameter;      
-      setDrinksSelected(newArray);   
+      setDrinksSelected(newArray);  
+      realtimeselector = "drink"; 
 
     }else{
       const newArray = [...dessertsSelected];
       newArray[e]=parameter;      
       setDessertsSelected(newArray); 
+      realtimeselector = "dessert";
     }
+    verifyTheOrder(realtimeselector); //verifica a cada click de seleção se pode fechar o pedido
   }
+     
 
   function SetTheAmount(element, amount){
+    const id = element.id;
     const e = (element.id)%3; //o "e" vai assumir os valores 0, 1, 2 de forma ciclica
     
-    if(e < 3){      
+    if(id < 3){      
       const newArray = [...dishesAmount];
       newArray[e]=amount;      //amount é igual ao count mostrado indicando a quantidade de cada item
       setDishesAmount(newArray);   
             
-    }else if(e < 6){
+    }else if(id < 6){
       const newArray = [...drinksAmount];
       newArray[e]=amount;      
       setDrinksAmount(newArray); 
@@ -76,27 +89,32 @@ export default function App() {
     }
   }
 
-  function verifyTheOrder(){
-    const isDishChoosed = dishesData.filter(item => {
-      return item.includes(true);
-    });
-    const isDrinkChoosed = drinksData.filter(item => {
-      return item.includes(true);
-    });
-    const isDessertChoosed = dessertsData.filter(item => {
-      return item.includes(true);
-    });
-    if(isDishChoosed && isDrinkChoosed && isDessertChoosed){
-      return true;
+  function verifyTheOrder(realtimeselector){     
+
+    if((dishesSelected.includes(true) && drinksSelected.includes(true) && realtimeselector==="dessert") ||
+       (dishesSelected.includes(true) && dessertsSelected.includes(true) && realtimeselector==="drink") ||
+       (drinksSelected.includes(true) && dessertsSelected.includes(true) && realtimeselector==="dish")) 
+    {
+      changeOrderButton();
     }
   }
 
+  function changeOrderButton(){   
+    
+      setOrderButton("Tudo certo, fazer pedido!"); 
+      setCloseOrder("{() => setToOverlay()}")
+    }   
+    
+  function setToOverlay(overlay){
+
+  }
+  
   return (
     <div>
       <Header />
       <Menu dishes={dishesData} drinks={drinksData} desserts={dessertsData} SetTheChoice={SetTheChoice} SetTheAmount={SetTheAmount} verifyTheOrder={verifyTheOrder}/> 
-      <Overlay />  
-      <Footer dishes={dishesData} drinks={drinksData} desserts={dessertsData} verifyTheOrder={verifyTheOrder} />     
+      <Overlay setToOverlay={setToOverlay} dishesData={dishesData} drinksData={drinksData} dessertsData={dessertsData} />  
+      <Footer orderButton={orderButton} closeOrder={closeOrder} />     
     </div>
   );
 }
