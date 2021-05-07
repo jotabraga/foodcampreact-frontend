@@ -1,3 +1,3 @@
-export default function SelectFood(e){
-    e.currentTarget.classList.toggle("selecionado");
-}
+// export default function SelectFood(e){
+//     e.classList.toggle("selecionado");
+// }

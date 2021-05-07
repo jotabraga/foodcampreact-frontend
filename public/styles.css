@@ -99,7 +99,7 @@ body {
 .opcao .check {
   opacity: 0;
   color: #32B72F;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .menu .secao .opcoes .opcao.selecionado .check {
