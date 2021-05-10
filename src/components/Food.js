@@ -36,7 +36,7 @@ export default function Food(props){
 
     return(
         
-        <div className={selection} onClick={() => selectItem(item, true)}>
+        <div key={item.id} className={selection} onClick={() => selectItem(item, true)}>
             <img src={image} />
             <div className="titulo">{title}</div>
             <div className="descricao">{description}</div>

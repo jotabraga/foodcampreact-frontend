@@ -21,11 +21,11 @@ export default function Overlay(props){
             <div className="titulo">Confirme seu pedido</div>
 
             <ul>           
-                {selectedDishes.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}
+                {selectedDishes.map(item => <ItemSelected key={item.id} title={item.title} amount={item.amount} price={item.price} />)}
 
-                {selectedDrinks.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}
+                {selectedDrinks.map(item => <ItemSelected key={item.id} title={item.title} amount={item.amount} price={item.price} />)}
             
-                {selectedDesserts.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}      
+                {selectedDesserts.map(item => <ItemSelected key={item.id}  title={item.title} amount={item.amount} price={item.price} />)}      
 
                 <li className="total">
                     <div>Total</div>
