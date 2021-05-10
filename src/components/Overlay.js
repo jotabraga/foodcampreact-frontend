@@ -1,68 +1,50 @@
+import ItemSelected from "./ItemSelected.js";
+import ConfirmOrder from "./ConfirmOrder.js";
 
 export default function Overlay(props){
 
-    console.log(props);
+    const {overlay, setToOverlay, dishesData, drinksData, dessertsData, name, adress} = props
 
-    const selectedDishes = props.dishesData.filter(item => item.selected===true); //filtro para filtrar todas as opções escolhidas
-    const selectedDrinks = props.drinksData.filter(item => item.selected===true);
-    const selectedDesserts = props.dessertsData.filter(item => item.selected===true);
+    const selectedDishes = dishesData.filter(item => item.selected === true); //filtro para filtrar todas as opções escolhidas
+    const selectedDrinks = drinksData.filter(item => item.selected === true);
+    const selectedDesserts = dessertsData.filter(item => item.selected === true);
+        
+    const dishPrice = selectedDishes.reduce((elem, current) => { return elem + (current.price * current.amount) },0).toFixed(2);    
+    const drinkPrice = selectedDrinks.reduce((elem, current) => { return elem + (current.price * current.amount) },0).toFixed(2);
+    const dessertPrice = selectedDesserts.reduce((elem, current) => { return elem + (current.price * current.amount) },0).toFixed(2);
 
-    console.log(selectedDesserts);
+    const total = (parseFloat(dishPrice) + parseFloat(drinkPrice) + parseFloat(dessertPrice)).toFixed(2);
 
-    const dishPrice = selectedDishes.map(item => item.price);
-    const drinkPrice = selectedDrinks.map(item => item.price);
-    const dessertPrice = selectedDesserts.map(item => item.price);
-
-    
-
-    const dishCost = dishPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
-    const drinkCost = drinkPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
-    const dessertCost = dessertPrice.reduce((accumulator, currentValue) => accumulator + currentValue);
-
-    const total = (dishCost + drinkCost + dessertCost);
 
     return (
-        <div class="overlay escondido">
+        <div class={overlay}>
         <div class="confirmar-pedido">
             <div class="titulo">Confirme seu pedido</div>
 
-            <ul>
-            {selectedDishes.map(item => {
+            <ul>           
+                {selectedDishes.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}
 
-                <li class="prato">
-                    <div class="nome">{item.title}</div>
-                    <div class="preco">{item.price}({item.amount}x)</div>
-                </li>
-            })
-            };
+                {selectedDrinks.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}
             
+                {selectedDesserts.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}      
 
-            {selectedDrinks.map(item => {
-            
-                <li class="bebida">
-                    <div class="nome">{item.title}</div>
-                    <div class="preco">{item.price}({item.amount}x)</div>
+                <li class="total">
+                    <div>Total</div>
+                    <div>R$ {total}</div>
                 </li>
-            })
-            }
 
-            {selectedDesserts.map(item => {
-
-                <li class="sobremesa">
-                    <div class="nome">{item.title}</div>
-                    <div class="preco">{item.price}({item.amount}x)</div>
+                <li class="client">
+                    <div class="nome">Nome: {name}</div>                               
                 </li>
-            })
-            } 
 
-            <li class="total">
-                <div>Total</div>
-                <div>R$ {total}</div>
-            </li>
+                <li class="adress">
+                    <div class="nome">Endereço: {adress}</div> 
+                </li>
 
             </ul>
-            <button class="confirmar">Tudo certo, pode pedir!</button>
-            <button class="cancelar">Cancelar</button>
+
+            <ConfirmOrder selectedDishes={selectedDishes} selectedDrinks={selectedDrinks} selectedDesserts={selectedDesserts} total={total} name={name} adress={adress}/>
+            <button class="cancelar" onClick={() => setToOverlay("overlay escondido")}>Cancelar</button>
         </div>
         </div>
     );

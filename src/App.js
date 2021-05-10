@@ -7,21 +7,21 @@ import React,{useState} from "react";
 export default function App() {
 
   const dishesOptions = [
-    {id: 0,title: "Frango Yin Yang",image: "img/frango_yin_yang.png", description: "Um pouco de batata, um pouco de salada",price: "14,90"},
-    {id: 1,title: "Bife à cavalo",image: "img/bifeacavalo.jpg", description: "Bife mignon com ovo frito",price: "17,90"},
-    {id: 2,title: "Vegetariano",image: "img/vegetariano.jpg", description: "Salada de alface tomate e cenoura" ,price: "16,90"}
+    {id: 0,title: "Frango Yin Yang",image: "img/frango_yin_yang.png", description: "Um pouco de batata, um pouco de salada",price: "15.00"},
+    {id: 1,title: "Bife à cavalo",image: "img/bifeacavalo.jpg", description: "Bife mignon com ovo frito",price: "18.00"},
+    {id: 2,title: "Vegetariano",image: "img/vegetariano.jpg", description: "Salada de alface tomate e cenoura" ,price: "17.00"}
 ]
 
   const drinksOptions = [
-      {id: 3,title: "Coquinha gelada",image: "img/coquinha_gelada.png", description: "Coquinha trincando c/ limão",price: "14,90"},
-      {id: 4,title: "Chopp gelado",image: "img/chopp.jpg", description: "Chopp gelado Heineken",price: "14,90"},
-      {id: 5,title: "Suco natural",image: "img/suco.jpg", description: "Suco natural feito na hora",price: "14,90"}
+      {id: 3,title: "Coquinha gelada",image: "img/coquinha_gelada.png", description: "Coquinha trincando c/ limão",price: "13.00"},
+      {id: 4,title: "Chopp gelado",image: "img/chopp.jpg", description: "Chopp gelado Heineken",price: "10.00"},
+      {id: 5,title: "Suco natural",image: "img/suco.jpg", description: "Suco natural feito na hora",price: "8.00"}
   ]
 
   const dessertsOptions = [
-      {id: 6,title: "Pudim",image: "img/pudim.png", description: "Pudim caseiro de leite moça",price: "14,90"},
-      {id: 7,title: "Sorvete",image: "img/sorvete.jpg", description: "Sorvete gelato com duas bolas",price: "14,90"},
-      {id: 8,title: "Torta",image: "img/torta.jpg", description: "Torta de limão ou morango",price: "14,90"},
+      {id: 6,title: "Pudim",image: "img/pudim.png", description: "Pudim caseiro de leite moça",price: "11.00"},
+      {id: 7,title: "Sorvete",image: "img/sorvete.jpg", description: "Sorvete gelato com duas bolas",price: "15.00"},
+      {id: 8,title: "Torta",image: "img/torta.jpg", description: "Torta de limão ou morango",price: "12.00"},
   ]  
 
   const [dishesSelected, setDishesSelected] = useState([false,false,false]);
@@ -37,7 +37,12 @@ export default function App() {
   const dessertsData = dessertsOptions.map((item, index) => ({...item, selected:dessertsSelected[index], amount:dessertsAmount[index]}));
  
   const [orderButton, setOrderButton] = React.useState("Selecione os 3 itens para fechar o pedido"); //botão de fechar pedido do footer
-  const [closeOrder, setCloseOrder] = useState(""); //estado que habilita o onclick pra fechar o pedido no footer
+  const [styleOfOrderButton, setStyleOfOrderButton] = useState("fazer-pedido");
+  const [overlay, setOverlay] = useState("overlay escondido");
+
+  const [name, setName] = useState("Fulano de tal");
+  const [adress, setAdress] = useState("Rua bananal, 500");
+
      
   function SetTheChoice(element, parameter){
 
@@ -101,20 +106,22 @@ export default function App() {
 
   function changeOrderButton(){   
     
-      setOrderButton("Tudo certo, fazer pedido!"); 
-      setCloseOrder("{() => setToOverlay()}")
-    }   
+    setOrderButton("Tudo certo, fazer pedido!"); 
+    setStyleOfOrderButton("fazer-pedido ativo");
+  }   
     
-  function setToOverlay(overlay){
-
+  function setToOverlay(overlayed){
+    setName(prompt("Informe seu nome: "));
+    setAdress(prompt("Informe seu endereço: "));
+    setOverlay(overlayed);
   }
-  
+    
   return (
     <div>
       <Header />
       <Menu dishes={dishesData} drinks={drinksData} desserts={dessertsData} SetTheChoice={SetTheChoice} SetTheAmount={SetTheAmount} verifyTheOrder={verifyTheOrder}/> 
-      <Overlay setToOverlay={setToOverlay} dishesData={dishesData} drinksData={drinksData} dessertsData={dessertsData} />  
-      <Footer orderButton={orderButton} closeOrder={closeOrder} />     
+      <Overlay setToOverlay={setToOverlay} overlay={overlay} dishesData={dishesData} drinksData={drinksData} dessertsData={dessertsData} name={name} adress={adress}/>  
+      <Footer orderButton={orderButton} styleOfOrderButton={styleOfOrderButton} setToOverlay={setToOverlay} />     
     </div>
   );
 }
