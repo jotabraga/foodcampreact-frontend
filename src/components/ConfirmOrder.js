@@ -2,14 +2,29 @@ import React from 'react';
 
 export default function ConfirmOrder (props) {
     const {selectedDishes, selectedDrinks, selectedDesserts, total, name, adress} = props;
+    let main = "";
+    let beverage = "";
+    let dessert = "";
+
+    selectedDishes.forEach(element => {
+        main += element.title + "/ ";        
+    });
+
+    selectedDrinks.forEach(element => {
+        beverage += element.title + "/ ";        
+    });
+
+    selectedDesserts.forEach(element => {
+        dessert += element.title + "/ ";        
+    });
     
 
     const confirm = (selectedDishes, selectedDrinks, selectedDesserts, total, name, adress) => {
 		
 		const text = `Olá, gostaria de fazer o pedido:
-			- Prato: ${selectedDishes[0].title}
-			- Bebida: ${selectedDrinks[0].title}
-			- Sobremesa: ${selectedDesserts[0].title}
+			- Prato: ${main}
+			- Bebida: ${beverage}
+			- Sobremesa: ${dessert}
 			Total: R$ ${total}
 			Nome: ${name}
 			Endereço: ${adress}`;

@@ -8,8 +8,7 @@ export default function Footer(props){
         }else{
             alert("Selecione os 3 itens para fechar o pedido");
         }
-    }
-  
+    }  
 
     return (
         <div class="footer">

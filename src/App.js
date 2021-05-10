@@ -36,7 +36,7 @@ export default function App() {
   const drinksData = drinksOptions.map((item, index) => ({...item, selected:drinksSelected[index], amount:drinksAmount[index]})); //ao inves de add direto em todas as arrays
   const dessertsData = dessertsOptions.map((item, index) => ({...item, selected:dessertsSelected[index], amount:dessertsAmount[index]}));
  
-  const [orderButton, setOrderButton] = React.useState("Selecione os 3 itens para fechar o pedido"); //botão de fechar pedido do footer
+  const [orderButton, setOrderButton] = useState("Selecione os 3 itens para fechar o pedido"); //botão de fechar pedido do footer
   const [styleOfOrderButton, setStyleOfOrderButton] = useState("fazer-pedido");
   const [overlay, setOverlay] = useState("overlay escondido");
 
@@ -111,8 +111,11 @@ export default function App() {
   }   
     
   function setToOverlay(overlayed){
+
+    if(overlayed === "overlay"){  //pergunta o nome somente se for fechar o pedido
     setName(prompt("Informe seu nome: "));
     setAdress(prompt("Informe seu endereço: "));
+    }
     setOverlay(overlayed);
   }
     

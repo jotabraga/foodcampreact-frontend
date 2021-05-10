@@ -15,7 +15,6 @@ export default function Overlay(props){
 
     const total = (parseFloat(dishPrice) + parseFloat(drinkPrice) + parseFloat(dessertPrice)).toFixed(2);
 
-
     return (
         <div class={overlay}>
         <div class="confirmar-pedido">
