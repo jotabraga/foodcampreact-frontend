@@ -38,10 +38,10 @@ export default function Food(props){
         
         <div className={selection} onClick={() => selectItem(item, true)}>
             <img src={image} />
-            <div class="titulo">{title}</div>
-            <div class="descricao">{description}</div>
-            <div class="preco">R$ {price}</div>
-            <div class="check">
+            <div className="titulo">{title}</div>
+            <div className="descricao">{description}</div>
+            <div className="preco">R$ {price}</div>
+            <div className="check">
                 <div className="counter">
                     <button onClick={() => deductItem(item, false)}>-</button>{count}<button onClick={() => addItem(item)}>+</button>
                 </div>

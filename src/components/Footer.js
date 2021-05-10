@@ -11,8 +11,8 @@ export default function Footer(props){
     }  
 
     return (
-        <div class="footer">
-            <a href="#" class={styleOfOrderButton} onClick={() => verifyKeepTheOrder(orderButton)}>
+        <div className="footer">
+            <a href="#" className={styleOfOrderButton} onClick={() => verifyKeepTheOrder(orderButton)}>
             {orderButton}
             </a>
         </div>

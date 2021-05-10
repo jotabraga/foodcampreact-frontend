@@ -16,9 +16,9 @@ export default function Overlay(props){
     const total = (parseFloat(dishPrice) + parseFloat(drinkPrice) + parseFloat(dessertPrice)).toFixed(2);
 
     return (
-        <div class={overlay}>
-        <div class="confirmar-pedido">
-            <div class="titulo">Confirme seu pedido</div>
+        <div className={overlay}>
+        <div className="confirmar-pedido">
+            <div className="titulo">Confirme seu pedido</div>
 
             <ul>           
                 {selectedDishes.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}
@@ -27,23 +27,23 @@ export default function Overlay(props){
             
                 {selectedDesserts.map(item => <ItemSelected title={item.title} amount={item.amount} price={item.price} />)}      
 
-                <li class="total">
+                <li className="total">
                     <div>Total</div>
                     <div>R$ {total}</div>
                 </li>
 
-                <li class="client">
-                    <div class="nome">Nome: {name}</div>                               
+                <li className="client">
+                    <div className="nome">Nome: {name}</div>                               
                 </li>
 
-                <li class="adress">
-                    <div class="nome">Endereço: {adress}</div> 
+                <li className="adress">
+                    <div className="nome">Endereço: {adress}</div> 
                 </li>
 
             </ul>
 
             <ConfirmOrder selectedDishes={selectedDishes} selectedDrinks={selectedDrinks} selectedDesserts={selectedDesserts} total={total} name={name} adress={adress}/>
-            <button class="cancelar" onClick={() => setToOverlay("overlay escondido")}>Cancelar</button>
+            <button className="cancelar" onClick={() => setToOverlay("overlay escondido")}>Cancelar</button>
         </div>
         </div>
     );

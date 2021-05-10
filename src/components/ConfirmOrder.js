@@ -35,7 +35,7 @@ export default function ConfirmOrder (props) {
 	};
 
 	return (
-		<button class="confirmar" onClick={() => confirm(selectedDishes, selectedDrinks, selectedDesserts, total, name, adress)}>
+		<button className="confirmar" onClick={() => confirm(selectedDishes, selectedDrinks, selectedDesserts, total, name, adress)}>
 			Tudo certo, pode pedir!
 		</button>
 	);
